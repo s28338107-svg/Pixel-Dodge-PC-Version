@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIXEL DODGER</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #0c0a09;
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+    }
+    canvas {
+      image-rendering: pixelated;
+    }
+    
+    /* CRT Scanline Effect */
+    .retro-screen::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 100;
+      background-size: 100% 3px, 3px 100%;
+      pointer-events: none;
+    }
+
+    .pixel-border {
+      border: 4px solid #fff;
+      box-shadow: 6px 6px 0px #000;
+    }
+
+    .pixel-button {
+      position: relative;
+      background: #000;
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      transition: transform 0.1s;
+    }
+
+    .pixel-button:active {
+      transform: translate(2px, 2px);
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.98; }
+      5% { opacity: 0.95; }
+      10% { opacity: 0.99; }
+      15% { opacity: 0.92; }
+      100% { opacity: 1; }
+    }
+
+    .flicker-overlay {
+      animation: flicker 0.1s infinite;
+      pointer-events: none;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1c1917; }
+    ::-webkit-scrollbar-thumb { background: #444; border: 2px solid #1c1917; }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
